@@ -1,39 +1,46 @@
 import discord
 import random
-from discord.ext import commands
-from utils import DISCORD_TOKEN
-from bully import bully
+from utils import DISCORD_TOKEN, PERSON_BOT_ID
+from bully import bully, bully_wrapper
 
-"""
-100% = reply
-"""
-
+# Set up intents (message content intent is required to read message content)
 intents = discord.Intents.default()
-intents.message_content = True  # Required to read messages
+intents.message_content = True
 
-bot = commands.Bot(command_prefix="!", intents=intents)
+# Create bot instance
+client = discord.Client(intents=intents)
 
-# Percentage chance to reply (e.g., 20%)
-REPLY_CHANCE = 1.0
+# Chance to reply when not mentioned
+REPLY_CHANCE = 0.15
+BOT_REPLY_CHANCE = 0.5
 
-@bot.event
+@client.event
 async def on_ready():
-    print(f'Logged in as {bot.user}!')
+    print(f'Logged in as {client.user} (ID: {client.user.id})')
 
-@bot.event
-async def on_message(message):
-    # Prevent the bot from replying to itself
-    if message.author == bot.user:
+@client.event
+async def on_message(message: discord.Message):
+    text = message.clean_content
+    
+    # Ignore messages from bots
+    if message.author.bot:
+        author_id = message.author.id
+        if author_id == PERSON_BOT_ID and random.random() < BOT_REPLY_CHANCE:         
+            reply = bully_wrapper(text,  author_id)
+            await message.reply(reply)
         return
 
-    # Random chance to respond
-    if random.random() < REPLY_CHANCE:
-        text = message.content
+    text = message.clean_content
+
+    # Always reply if mentioned
+    if message.mentions and client.user in message.mentions:
         reply = bully(text)
         await message.reply(reply)
-        # await message.channel.send(f"Hi {message.author.name}, I heard you!")
 
-    # Required so commands still work
-    await bot.process_commands(message)
+    # Otherwise, use random chance
+    elif random.random() < REPLY_CHANCE:
+        reply = bully(text)
+        await message.reply(reply)
 
-bot.run(DISCORD_TOKEN)
+# Run the bot
+client.run(DISCORD_TOKEN)
