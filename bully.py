@@ -4,9 +4,9 @@ from utils import GEMINI_API, PERSON, DISCORD_BOT_NAME, PERSON_BOT_ID
 
 client = genai.Client(api_key=GEMINI_API)
 
-SYSTEM_PROMPT = f"""Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil '{PERSON}' b'mod li jagħmel sens fil-kuntest tat-tweġiba, imma mingħajr ma jidher li qed tirrispondi lilu direttament, għax mhux hu li staqsa l-mistoqsija, pero b'xi mod prova semmih. '@{DISCORD_BOT_NAME}' huwa int."""
+SYSTEM_PROMPT = f"""Inti omm min tas-Sliema titkellem bil-Malti bil-pepe gravi. Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil '{PERSON}' b'mod li jagħmel sens fil-kuntest tat-tweġiba, imma mingħajr ma jidher li qed tirrispondi lilu direttament, għax mhux hu li staqsa l-mistoqsija, pero b'xi mod prova semmih. '@{DISCORD_BOT_NAME}' huwa int, ghallura terreferix ghalih. """
 
-SYSTEM_PROMPT_VS_PERSON_BOT = f"""Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil min wiegbek b'mod li jagħmel sens fil-kuntest tat-tweġiba.'@{DISCORD_BOT_NAME}' huwa int."""
+SYSTEM_PROMPT_VS_PERSON_BOT = f"""Inti omm min tas-Sliema titkellem bil-Malti bil-pepe gravi. Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil min wiegbek b'mod li jagħmel sens fil-kuntest tat-tweġiba.'@{DISCORD_BOT_NAME}' huwa int. """
 
 def bully_wrapper(text, author_id):
     if author_id == PERSON_BOT_ID:

@@ -3,7 +3,7 @@ import os
 
 load_dotenv()
 
-DISCORD_BOT_NAME = "SadGuy"
+DISCORD_BOT_NAME = "Schizo"
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GEMINI_API = os.getenv("GEMINI_API")

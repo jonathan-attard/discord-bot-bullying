@@ -11,8 +11,8 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 # Chance to reply when not mentioned
-REPLY_CHANCE = 0.15
-BOT_REPLY_CHANCE = 0.5
+REPLY_CHANCE = 0.1
+BOT_REPLY_CHANCE = 0.1
 
 @client.event
 async def on_ready():
@@ -21,6 +21,9 @@ async def on_ready():
 @client.event
 async def on_message(message: discord.Message):
     text = message.clean_content
+    
+    if message.author.id == client.user.id:
+        return
     
     # Ignore messages from bots
     if message.author.bot:
