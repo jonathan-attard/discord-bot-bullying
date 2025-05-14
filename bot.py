@@ -25,7 +25,7 @@ async def on_message(message: discord.Message):
     # Ignore messages from bots
     if message.author.bot:
         author_id = message.author.id
-        if author_id == PERSON_BOT_ID and random.random() < BOT_REPLY_CHANCE:         
+        if random.random() < BOT_REPLY_CHANCE:         
             reply = bully_wrapper(text,  author_id)
             await message.reply(reply)
         return
