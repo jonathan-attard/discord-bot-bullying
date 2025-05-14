@@ -4,6 +4,10 @@ from discord.ext import commands
 from utils import DISCORD_TOKEN
 from bully import bully
 
+"""
+100% = reply
+"""
+
 intents = discord.Intents.default()
 intents.message_content = True  # Required to read messages
 
@@ -25,8 +29,8 @@ async def on_message(message):
     # Random chance to respond
     if random.random() < REPLY_CHANCE:
         text = message.content
-        reply = bully_nikoali(text)
-        await message.channel.send(reply)
+        reply = bully(text)
+        await message.reply(reply)
         # await message.channel.send(f"Hi {message.author.name}, I heard you!")
 
     # Required so commands still work

@@ -4,7 +4,7 @@ from utils import GEMINI_API, PERSON
 
 client = genai.Client(api_key=GEMINI_API)
 
-SYSTEM_PROMPT = f"""Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil '{PERSON}' b'mod li jagħmel sens fil-kuntest tat-tweġiba, imma mingħajr ma jidher li qed tirrispondi lilu direttament, għax mhux hu li staqsa l-mistoqsija."""
+SYSTEM_PROMPT = f"""Irrispondi dejjem b'mod qasir u bil-Malti. Fit-tweġiba, offendi lil '{PERSON}' b'mod li jagħmel sens fil-kuntest tat-tweġiba, imma mingħajr ma jidher li qed tirrispondi lilu direttament, għax mhux hu li staqsa l-mistoqsija, pero b'xi mod prova semmih."""
 
 def bully(text):
     response = client.models.generate_content(
