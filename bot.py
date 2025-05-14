@@ -11,8 +11,8 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 # Chance to reply when not mentioned
-REPLY_CHANCE = 0.1
-BOT_REPLY_CHANCE = 0.1
+REPLY_CHANCE = 0.15
+BOT_REPLY_CHANCE = 0.2
 
 @client.event
 async def on_ready():
